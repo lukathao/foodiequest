@@ -90,6 +90,9 @@ export default function TravelPlannerForm() {
     defaultValues: {
       startDate: new Date(),
       endDate: new Date(),
+      destination: '',
+      budget: undefined,
+      activities: undefined,
     },
   });
 

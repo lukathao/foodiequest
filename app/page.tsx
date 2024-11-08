@@ -399,9 +399,9 @@ export default function Page() {
   return (
     <div className="flex flex-col items-center justify-center py-5 h-screen dark:bg-black bg-white relative w-full">
       <div className="flex flex-col justify-center items-center gap-2">
-        <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
+        <h1 className="text-center text-4xl md:text-4xl font-bold text-black dark:text-white uppercase">
           Foodiequest
-        </h2>
+        </h1>
         <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
           Let&#39;s plan your next trip.
         </p>
@@ -428,7 +428,7 @@ export default function Page() {
         >
         </motion.div>
         <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
-        <div className="absolute w-full -bottom-2 h-72 md:h-full z-10">
+        <div className="absolute w-full h-72 md:h-full z-10">
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
       </div>

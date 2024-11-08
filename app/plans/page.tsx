@@ -8,7 +8,7 @@ import FoodsToDo from '../todo/food/page';
 import GuideTodo from '../todo/guides/page';
 
 const Plan = () => {
-  const plan = useSelector((state: RootState) => state.plans);
+  const plan = useSelector((state: RootState) => state.plans.plan);
   const [activeTab, setActiveTab] = useState('requirements');
 
   const renderContent = () => {
@@ -28,6 +28,9 @@ const Plan = () => {
 
   return (
     <div className="max-w-lg mx-auto mt-8 p-4 border rounded-lg shadow-lg bg-white">
+      <div className="flex justify-center text-4xl text-black font-bold pt-2 pb-4 uppercase">
+        <h1>Foodiequest</h1>
+      </div>
       <div className="flex justify-around mb-4">
         <button
           onClick={() => setActiveTab('requirements')}

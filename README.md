@@ -28,4 +28,12 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Testing - Jest
+```bash
+npm run test
+```
 
+## AI Generated requests
+* Disabled in development (so we don't use token), only available in production
+* For testing purpose one prompt was made, and a prompt was returned, we use that prompt as strings for testing. 
+- See: __tests__/test-openai-parse.tsx

@@ -1,22 +1,16 @@
 "use server";
 
-// import { db } from "@/db/drizzle";
-// import { plans } from "@/db/schema";
 import { z } from "zod";
 import { formSchema } from "./schema";
-import path from "path";
 
-import { parseHTML } from "./parser/openai-parser";
-// import OpenAI from "openai";
 
 export async function useOpenAiPrompt(formData: z.infer<typeof formSchema>) {
   const { startDate, endDate, destination, activities, budget } = formData;
-  // const openAIClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
   let prompt = `
     I am planning a trip to ${destination} from ${startDate} to ${endDate}`
 
-  if (budget) {
+  if (budget && budget > 0) {
     prompt += `
       with a budget of ${budget}. 
       `
@@ -37,7 +31,8 @@ export async function useOpenAiPrompt(formData: z.infer<typeof formSchema>) {
   if (activities) {
     prompt += `
     I also want to do the following activities: ${activities.join(", ")}. 
-    The activities should be a list of days with the activities for each day. Please consider my budget for the activities.
+    The activities should be a list of days with the activities for each day. 
+    If I included a budget, please consider my budget for the activities.
     The list of activities should be wrapped inside a div with the class activities.
     `
   }
@@ -71,31 +66,4 @@ export async function useOpenAiPrompt(formData: z.infer<typeof formSchema>) {
   }
 
   return content;
-
-
-  // const user = await currentUser();
-
-  // <li>
-  //           <h2>Laap (Larb)</h2>
-  //           <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Laap%2C_Larb.jpg" alt="Laap (Larb)">
-  //           <p>A traditional Lao minced meat salad, usually made with chicken, beef, or pork, flavored with fresh herbs and spices.</p>
-  //       </li>
-  //       <li>
-  //           <h2>Som Tam (Papaya Salad)</h2>
-  //           <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Som_tam.jpg" alt="Som Tam (Papaya Salad)">
-  //           <p>A spicy salad made with shredded green papaya, tomatoes, peanuts, lime, and chili, typically served with sticky rice.</p>
-  //       </li>
-
-  // const [plan] = await db
-  //   .insert(plans)
-  //   .values({
-  //     text: data.choices[0].message.content,
-  //     userId: user?.id,
-  //     budget,
-  //     startDate: startDate.toISOString(),
-  //     endDate: endDate.toISOString(),
-  //   })
-  //   .returning();
-
-  // return plan.id;
 }
