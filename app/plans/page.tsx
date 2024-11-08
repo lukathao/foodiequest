@@ -6,10 +6,23 @@ import RequirementTodo from '../todo/requirements/page';
 import ActivitiesToDo from '../todo/activities/page';
 import FoodsToDo from '../todo/food/page';
 import GuideTodo from '../todo/guides/page';
+import { Button } from '@/components/ui/button';
+import { SignedOut, SignedIn } from '@clerk/nextjs';
+import axios from "axios";
 
 const Plan = () => {
   const plan = useSelector((state: RootState) => state.plans.plan);
   const [activeTab, setActiveTab] = useState('requirements');
+
+  const savePlan = async () => {
+    try {
+      // TODO create slice stores to save the state of the tasks as well
+      const response = await axios.post('/api/plans', plan);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   const renderContent = () => {
     switch (activeTab) {
@@ -28,8 +41,18 @@ const Plan = () => {
 
   return (
     <div className="max-w-lg mx-auto mt-8 p-4 border rounded-lg shadow-lg bg-white">
-      <div className="flex justify-center text-4xl text-black font-bold pt-2 pb-4 uppercase">
+      <div className="flex justify-center text-4xl text-black font-bold pt-2 uppercase">
         <h1>Foodiequest</h1>
+      </div>
+      <div className='flex justify-center text-xl text-black font-bold p-2' >
+        <SignedOut>
+          Sign-in to save this plan
+        </SignedOut>
+        <SignedIn>
+          <Button onClick={() => savePlan()}>
+            Save Plan
+          </Button>
+        </SignedIn>
       </div>
       <div className="flex justify-around mb-4">
         <button

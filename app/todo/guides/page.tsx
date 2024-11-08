@@ -1,7 +1,7 @@
-import Link from 'next/link';
+"use client";
 import React, { useState } from 'react'
 
-const GuidesToDo = ({ guides }) => {
+const GuidesToDo = ({ guides }: any) => {
   const [tasks, setTasks] = useState(
     guides.map((guide: { name: string, contact: string, website: string }) => ({ name: guide.name, contact: guide.contact, website: guide.website, completed: false }))
   );
@@ -24,7 +24,7 @@ const GuidesToDo = ({ guides }) => {
   return (
     <div className="max-w-md mx-auto mt-10 p-4 bg-white text-slate-900">
       <ul>
-        {tasks.map((task, index: number) => (
+        {tasks.map((task: any, index: number) => (
           <li key={index} className="flex items-center justify-between mb-5 shadow-md rounded-lg p-5">
             <div>
               <div onClick={() => toggleTask(index)}

@@ -1,6 +1,7 @@
+"use client";
 import React, { useState } from 'react'
 
-const ActivitiesToDo = ({ activities }) => {
+const ActivitiesToDo = ({ activities }: any) => {
   const [tasks, setTasks] = useState(
     activities.map((activity: { order: number, description: string; }) => ({ text: activity.description, order: activity.order, completed: false }))
   );
@@ -22,7 +23,7 @@ const ActivitiesToDo = ({ activities }) => {
   return (
     <div className="max-w-md mx-auto mt-10 p-4 bg-white text-slate-900">
       <ul>
-        {tasks.map((task, index: number) => (
+        {tasks.map((task: any, index: number) => (
           <li key={index} className="flex items-center justify-between mb-5 shadow-md rounded-lg p-5">
             <span
               onClick={() => toggleTask(index)}
