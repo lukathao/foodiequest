@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux';
 import RequirementTodo from '../todo/requirements/page';
 import ActivitiesToDo from '../todo/activities/page';
+import FoodsToDo from '../todo/food/page';
+import GuideTodo from '../todo/guides/page';
 
 const Plan = () => {
   const plan = useSelector((state: RootState) => state.plans);
@@ -14,11 +16,11 @@ const Plan = () => {
       case 'requirements':
         return <RequirementTodo requirements={plan["requirements"]} />;
       case 'food':
-        return <div>Information about foods will be shown here</div>;
+        return <FoodsToDo foods={plan["foods"]} />;
       case 'activities':
         return <ActivitiesToDo activities={plan["activities"]} />;
       case 'tourGuides':
-        return <div>Information about tour guides will go here.</div>;
+        return <GuideTodo guides={plan["guides"]} />;
       default:
         return null;
     }

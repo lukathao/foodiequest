@@ -9,7 +9,7 @@ export interface Activity {
 
 export interface Food {
   name: string;
-  imageUrl: string;
+  url: string | undefined;
 }
 
 export interface TourGuide {

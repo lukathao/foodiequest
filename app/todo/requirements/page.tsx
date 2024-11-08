@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 const RequirementTodo = ({ requirements }) => {
-  console.log("setting requirements todo");
   const [tasks, setTasks] = useState(
     requirements.map((requirement: { description: string; }) => ({ text: requirement.description, completed: false }))
   );

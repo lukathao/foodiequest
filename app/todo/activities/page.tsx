@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 
 const ActivitiesToDo = ({ activities }) => {
-  console.log("setting requirements todo");
   const [tasks, setTasks] = useState(
     activities.map((activity: { order: number, description: string; }) => ({ text: activity.description, order: activity.order, completed: false }))
   );

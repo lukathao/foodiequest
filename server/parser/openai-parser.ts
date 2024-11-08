@@ -15,10 +15,10 @@ export const parseHTML = (htmlString: string) => {
       requirements.push({ description: str });
     });
 
-    $('.foods ul li').each((_, element) => {
-      const name = $(element).find('p').text().trim();
-      const imageUrl = $(element).find('img').attr('src') || '';
-      foods.push({ name, imageUrl });
+    $('.foods > div').each((index, element) => {
+      const name = $(element).find('p').text();
+      const url = $(element).find('img').attr('src');
+      foods.push({ name, url });
     });
 
     $('.tour_guides > div').each((_, element) => {
