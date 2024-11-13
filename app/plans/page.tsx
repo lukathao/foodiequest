@@ -41,8 +41,14 @@ const Plan = () => {
 
   return (
     <div className="max-w-lg mx-auto mt-8 p-4 border rounded-lg shadow-lg bg-white">
-      <div className="flex justify-center text-4xl text-black font-bold pt-2 uppercase">
-        <h1>Travelcat</h1>
+      <div className="text-center">
+        <h1 className='text-4xl text-black font-bold pt-2 uppercase'>Travelcat</h1>
+      </div>
+      <div className='text-xl text-black font-bold pt-2 uppercase text-center'>
+        {plan.destination}
+      </div>
+      <div className='text-xl text-black font-bold pt-2 uppercase text-center'>
+        {plan.startDate} - {plan.endDate}
       </div>
       <div className='flex justify-center text-xl text-black font-bold p-2' >
         <SignedOut>

@@ -1,9 +1,13 @@
 import { clerkUserInfo } from "@/interfaces/travel";
 import { getUserInfo } from "@/server/actions/user";
-import { savePlan } from "@/server/db/NeonDb";
+import { savePlan } from "@/server/db/VercelDb";
 import { currentUser } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
+export async function GET(req: NextRequest) {
+  const data = await req.json(); //this should be the user email
+  // don't actually need this function, can directly do server action
+}
 
 export async function POST(req: NextRequest) {
   const data = await req.json();

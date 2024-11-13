@@ -5,6 +5,8 @@ import { parseHTML } from "../parser/openai-parser";
 import { formSchema } from "../schema";
 import fs from 'fs/promises';
 import { getOpenAiPrompt } from "../openai";
+import { currentUser } from "@clerk/nextjs/server";
+import { getTravelPlansByEmail } from "../db/VercelDb";
 
 export async function planTrip(formData: z.infer<typeof formSchema>) {
   try {
@@ -66,4 +68,13 @@ export async function getPrompt(formData: z.infer<typeof formSchema>) {
   `;
 
   return prompt;
+}
+
+export async function getUserPlans() {
+  const user = await currentUser();
+  if (!user) {
+    //need to be logged in
+    return null;
+  }
+  return getTravelPlansByEmail(user.emailAddresses[0].emailAddress);
 }

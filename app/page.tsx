@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { savePlan } from "@/server/db/NeonDb";
+import { savePlan } from "@/server/db/VercelDb";
 import { SignedOut, SignedIn } from "@clerk/nextjs";
 
 const World = dynamic(() => import("../components/ui/globe").then((m) => m.World), {

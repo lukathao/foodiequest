@@ -1,4 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+const today = new Date();
+const tenDaysLater = new Date(today);
+tenDaysLater.setDate(today.getDate() + 10);
 
 const initialPlan: any = {
   plan: {
@@ -38,6 +41,9 @@ const initialPlan: any = {
         description: "Fill out this app."
       }
     ],
+    destination: "Hanoi, Vietnam",
+    startDate: today.toDateString(),
+    endDate: tenDaysLater.toDateString(),
   }
 };
 

@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  // Uses connection pooling
+  url       = env("POSTGRES_PRISMA_URL")
+  // Uses direct connection, ⚠️ make sure to keep this to `POSTGRES_URL_NON_POOLING`
+  // or you'll have dangling databases from migrations
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  username    String
+  email       String       @unique
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @default(now())
+  travelPlans TravelPlan[]
+}
+
+model Requirement {
+  id           Int        @id @default(autoincrement())
+  travelPlan   TravelPlan @relation(fields: [id], references: [id])
+  travelPlanId Int
+  description  String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @default(now())
+}
+
+model Food {
+  id           Int        @id @default(autoincrement())
+  travelPlan   TravelPlan @relation(fields: [id], references: [id])
+  travelPlanId Int
+  name         String
+  url          String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @default(now())
+}
+
+model Guide {
+  id           Int        @id @default(autoincrement())
+  travelPlan   TravelPlan @relation(fields: [id], references: [id])
+  travelPlanId Int
+  name         String
+  contact      String
+  website      String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @default(now())
+}
+
+model Activity {
+  id           Int        @id @default(autoincrement())
+  travelPlan   TravelPlan @relation(fields: [id], references: [id])
+  travelPlanId Int
+  order        Int
+  description  String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @default(now())
+}
+
+model TravelPlan {
+  id           Int           @id @default(autoincrement())
+  user         User          @relation(fields: [id], references: [id])
+  requirements Requirement[]
+  foods        Food[]
+  guides       Guide[]
+  activities   Activity[]
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @default(now())
+  destination  String
+  startDate    DateTime
+  endDate      DateTime
+}

@@ -1,5 +1,4 @@
-import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
-import { createWrapper } from "next-redux-wrapper";
+import { configureStore } from "@reduxjs/toolkit";
 import planSlice from "./slices/planSlice";
 
 
