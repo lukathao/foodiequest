@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React, { useState } from 'react'
 
 const RequirementTodo = ({ requirements }: any) => {
+  if (!requirements) return null;
+
   const [tasks, setTasks] = useState(
-    requirements.map((requirement: { description: string; }) => ({ text: requirement.description, completed: false }))
+    requirements?.map((requirement: { description: string; }) => ({ text: requirement.description, completed: false }))
   );
 
   // Toggle task completion

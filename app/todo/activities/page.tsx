@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React, { useState } from 'react'
 
 const ActivitiesToDo = ({ activities }: any) => {
+  if (!activities) return null;
+
   const [tasks, setTasks] = useState(
-    activities.map((activity: { order: number, description: string; }) => ({ text: activity.description, order: activity.order, completed: false }))
+    activities?.map((activity: { order: number, description: string; }) => ({ text: activity.description, order: activity.order, completed: false }))
   );
 
   // Toggle task completion

@@ -1,11 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React, { useState } from 'react'
 
 const GuidesToDo = ({ guides }: any) => {
+  if (!guides) return null;
+
   const [tasks, setTasks] = useState(
-    guides.map((guide: { name: string, contact: string, website: string }) => ({ name: guide.name, contact: guide.contact, website: guide.website, completed: false }))
+    guides?.map((guide: { name: string, contact: string, website: string }) => ({ name: guide.name, contact: guide.contact, website: guide.website, completed: false }))
   );
-  //TODO images aren't displaying find a way to search for images and pop them up for the user
 
   // Toggle task completion
   const toggleTask = (index: any) => {

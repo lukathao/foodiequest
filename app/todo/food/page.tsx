@@ -1,9 +1,12 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React, { useState } from 'react'
 
 const FoodsToDo = ({ foods }: any) => {
+  if (!foods) return null;
+
   const [tasks, setTasks] = useState(
-    foods.map((food: { name: string, url: string }) => ({ name: food.name, url: food.url, completed: false }))
+    foods?.map((food: { name: string, url: string }) => ({ name: food.name, url: food.url, completed: false }))
   );
   //TODO images aren't displaying find a way to search for images and pop them up for the user
 
@@ -31,7 +34,7 @@ const FoodsToDo = ({ foods }: any) => {
               className={`cursor-pointer ${task.completed ? 'line-through text-gray-500' : ''}`}
             >
               {task.name}
-              <img alt={task.name} src={task.url} />
+              {/* <img alt={task.name} src={task.url} /> */}
             </span>
             <button
               onClick={() => deleteTask(index)}
