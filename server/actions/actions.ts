@@ -6,7 +6,8 @@ import { formSchema } from "../schema";
 import fs from 'fs/promises';
 import { getOpenAiPrompt } from "../openai";
 import { currentUser } from "@clerk/nextjs/server";
-import { getTravelPlansByEmail } from "../db/VercelDb";
+import { Plans } from "@/interfaces/travel";
+// import { getTravelPlansByEmail } from "../db/VercelDb";
 
 export async function planTrip(formData: z.infer<typeof formSchema>) {
   try {
@@ -21,7 +22,16 @@ export async function planTrip(formData: z.infer<typeof formSchema>) {
       content = await getOpenAiPrompt(prompt);
     }
 
-    const plan = parseHTML(content);
+    const { requirements, foods, guides, activities } = parseHTML(content);
+    const plan: Plans = {
+      requirements,
+      foods,
+      guides,
+      activities,
+      destination: formData.destination,
+      startDate: formData.startDate.toDateString(),
+      endDate: formData.endDate.toDateString(),
+    }
     return plan;
 
   } catch (error) {
@@ -70,11 +80,11 @@ export async function getPrompt(formData: z.infer<typeof formSchema>) {
   return prompt;
 }
 
-export async function getUserPlans() {
-  const user = await currentUser();
-  if (!user) {
-    //need to be logged in
-    return null;
-  }
-  return getTravelPlansByEmail(user.emailAddresses[0].emailAddress);
-}
+// export async function getUserPlans() {
+//   const user = await currentUser();
+//   if (!user) {
+//     //need to be logged in
+//     return null;
+//   }
+//   return getTravelPlansByEmail(user.emailAddresses[0].emailAddress);
+// }
