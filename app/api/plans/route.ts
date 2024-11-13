@@ -1,13 +1,18 @@
+import { clerkUserInfo } from "@/interfaces/travel";
+import { getUserInfo } from "@/server/actions/user";
 import { savePlan } from "@/server/db/NeonDb";
 import { currentUser } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
-export default async function POST(req: NextRequest) {
+
+export async function POST(req: NextRequest) {
   const data = await req.json();
   const user = await currentUser();
+
   if (user) {
+    const clerkUserInfo = await getUserInfo(user);
     try {
-      const savedPlanId = await savePlan(user, data);
+      const savedPlanId = await savePlan(clerkUserInfo, data);
       return NextResponse.json({
         savedPlanId,
         status: 201,

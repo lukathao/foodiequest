@@ -42,7 +42,7 @@ const Plan = () => {
   return (
     <div className="max-w-lg mx-auto mt-8 p-4 border rounded-lg shadow-lg bg-white">
       <div className="flex justify-center text-4xl text-black font-bold pt-2 uppercase">
-        <h1>Foodiequest</h1>
+        <h1>Travelcat</h1>
       </div>
       <div className='flex justify-center text-xl text-black font-bold p-2' >
         <SignedOut>
@@ -55,30 +55,42 @@ const Plan = () => {
         </SignedIn>
       </div>
       <div className="flex justify-around mb-4">
-        <button
-          onClick={() => setActiveTab('requirements')}
-          className={`py-2 px-4 text-sm font-semibold rounded-lg ${activeTab === 'requirements' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'}`}
-        >
-          Requirements
-        </button>
-        <button
-          onClick={() => setActiveTab('food')}
-          className={`py-2 px-4 text-sm font-semibold rounded-lg ${activeTab === 'food' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'}`}
-        >
-          Food
-        </button>
-        <button
-          onClick={() => setActiveTab('activities')}
-          className={`py-2 px-4 text-sm font-semibold rounded-lg ${activeTab === 'activities' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'}`}
-        >
-          Activities
-        </button>
-        <button
-          onClick={() => setActiveTab('tourGuides')}
-          className={`py-2 px-4 text-sm font-semibold rounded-lg ${activeTab === 'tourGuides' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'}`}
-        >
-          Tour Guides
-        </button>
+        {
+          (plan["requirements"] && plan["requirements"].length > 0) &&
+          <button
+            onClick={() => setActiveTab('requirements')}
+            className={`py-2 px-4 text-sm font-semibold rounded-lg ${activeTab === 'requirements' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'}`}
+          >
+            Requirements
+          </button>
+        }
+        {
+          (plan["foods"] && plan["foods"].length > 0) &&
+          <button
+            onClick={() => setActiveTab('food')}
+            className={`py-2 px-4 text-sm font-semibold rounded-lg ${activeTab === 'food' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'}`}
+          >
+            Food
+          </button>
+        }
+        {
+          (plan["activities"] && plan["activities"].length > 0) &&
+          <button
+            onClick={() => setActiveTab('activities')}
+            className={`py-2 px-4 text-sm font-semibold rounded-lg ${activeTab === 'activities' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'}`}
+          >
+            Activities
+          </button>
+        }
+        {
+          (plan["guides"] && plan["guides"].length > 0) &&
+          <button
+            onClick={() => setActiveTab('tourGuides')}
+            className={`py-2 px-4 text-sm font-semibold rounded-lg ${activeTab === 'tourGuides' ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700'}`}
+          >
+            Tour Guides
+          </button>
+        }
       </div>
       <div className="border-t pt-4">
         {renderContent()}

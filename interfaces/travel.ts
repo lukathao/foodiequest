@@ -24,3 +24,8 @@ export interface Plans {
   activities: Activity[],
   requirements: Requirement[],
 }
+
+export interface clerkUserInfo {
+  username: string;
+  email: string;
+}

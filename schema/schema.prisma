@@ -1,0 +1,62 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  // Uses connection pooling
+  url       = env("POSTGRES_PRISMA_URL")
+  // Uses direct connection, ⚠️ make sure to keep this to `POSTGRES_URL_NON_POOLING`
+  // or you'll have dangling databases from migrations
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+  Plan      Plan[]
+}
+
+model Requirement {
+  id          Int    @id @default(autoincrement())
+  plan        Plan   @relation(fields: [id], references: [id])
+  planId      Int
+  description String
+}
+
+model Food {
+  id     Int    @id @default(autoincrement())
+  plan   Plan   @relation(fields: [id], references: [id])
+  planId Int
+  name   String
+  url    String
+}
+
+model Guide {
+  id      Int    @id @default(autoincrement())
+  plan    Plan   @relation(fields: [id], references: [id])
+  planId  Int
+  name    String
+  contact String
+  website String
+}
+
+model Activity {
+  id          Int    @id @default(autoincrement())
+  plan        Plan   @relation(fields: [id], references: [id])
+  planId      Int
+  order       Int
+  description String
+}
+
+model Plan {
+  id          Int           @id @default(autoincrement())
+  user        User          @relation(fields: [id], references: [id])
+  Requirement Requirement[]
+  Food        Food[]
+  Guide       Guide[]
+  Activity    Activity[]
+}

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { savePlan } from "@/server/db/NeonDb";
+import { SignedOut, SignedIn } from "@clerk/nextjs";
 
 const World = dynamic(() => import("../components/ui/globe").then((m) => m.World), {
   ssr: false,
@@ -400,16 +402,21 @@ export default function Page() {
     <div className="flex flex-col items-center justify-center py-5 h-screen dark:bg-black bg-white relative w-full">
       <div className="flex flex-col justify-center items-center gap-2">
         <h1 className="text-center text-4xl md:text-4xl font-bold text-black dark:text-white uppercase">
-          Foodiequest
+          Travelcat
         </h1>
         <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
           Let&#39;s plan your next trip.
         </p>
-        <Button>
-          <Link href={"/travel-planner"}>
-            GO
-          </Link>
-        </Button>
+        <SignedOut>
+          Sign-in to use this service
+        </SignedOut>
+        <SignedIn>
+          <Button>
+            <Link href={"/travel-planner"}>
+              GO
+            </Link>
+          </Button>
+        </SignedIn>
       </div>
       <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
         <motion.div

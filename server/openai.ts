@@ -4,7 +4,7 @@ import { z } from "zod";
 import { formSchema } from "./schema";
 
 
-export async function useOpenAiPrompt(prompt: string) {
+export async function getOpenAiPrompt(prompt: string) {
 
 
   const response = await fetch("https://api.openai.com/v1/chat/completions", {

@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Foodiequest",
+  title: "Travelcat",
   description: "AI trip helper",
 };
 

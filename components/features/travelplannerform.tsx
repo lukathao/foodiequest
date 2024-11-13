@@ -3,7 +3,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Check, ChevronsUpDown } from "lucide-react";
+import { Check, ChevronsUpDown, Link } from "lucide-react";
 import { formSchema } from "@/server/schema";
 import { planTrip } from "@/server/actions/actions";
 import { CalendarIcon } from "@radix-ui/react-icons";
@@ -37,6 +37,7 @@ import { useRouter } from "next/navigation";
 import { addDays, format } from "date-fns";
 import { useDispatch } from "react-redux";
 import { addPlan } from "@/redux-store/slices/planSlice";
+import { SignedOut, SignedIn } from "@clerk/nextjs";
 
 const activities = [
   {
@@ -340,8 +341,12 @@ export default function TravelPlannerForm() {
                 </FormItem>
               )}
             />
-
-            <Button type="submit">Plan my trip!</Button>
+            <SignedOut>
+              Sign-in to plan your trip!
+            </SignedOut>
+            <SignedIn>
+              <Button type="submit">Plan my trip!</Button>
+            </SignedIn>
           </form>
         </Form>
       </div>

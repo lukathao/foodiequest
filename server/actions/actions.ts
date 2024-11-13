@@ -4,11 +4,10 @@ import { z } from "zod";
 import { parseHTML } from "../parser/openai-parser";
 import { formSchema } from "../schema";
 import fs from 'fs/promises';
-import { useOpenAiPrompt } from "../openai";
+import { getOpenAiPrompt } from "../openai";
 
 export async function planTrip(formData: z.infer<typeof formSchema>) {
   try {
-    let plan;
     let content;
     const prompt = await getPrompt(formData);
 
@@ -17,10 +16,10 @@ export async function planTrip(formData: z.infer<typeof formSchema>) {
       content = await fs.readFile(filePath, 'utf-8');
     } else if (process.env.NODE_ENV === 'production') {
       // **CAREFUL: in production this will use AI tokens
-      content = await useOpenAiPrompt(prompt);
+      content = await getOpenAiPrompt(prompt);
     }
 
-    plan = parseHTML(content);
+    const plan = parseHTML(content);
     return plan;
 
   } catch (error) {
