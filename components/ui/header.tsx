@@ -1,17 +1,17 @@
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs'
 import React from 'react'
 
-const header = () => {
+const ClerkHeader = () => {
   return (
-    <header>
+    <header className='flex justify-end p-4 absolute top-0 left-0 right-0 z-50'>
       <SignedOut>
         <SignInButton />
       </SignedOut>
       <SignedIn>
-        <UserButton />
+        <UserButton showName />
       </SignedIn>
     </header>
   )
 }
 
-export default header
+export default ClerkHeader

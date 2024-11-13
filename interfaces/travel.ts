@@ -23,4 +23,12 @@ export interface Plans {
   guides: TourGuide[],
   activities: Activity[],
   requirements: Requirement[],
+  destination: string,
+  startDate: string,
+  endDate: string,
+}
+
+export interface clerkUserInfo {
+  username: string;
+  email: string;
 }

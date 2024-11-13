@@ -5,7 +5,6 @@ import { z } from "zod";
 import { formSchema } from "./schema";
 
 export async function planTrip(formData: z.infer<typeof formSchema>) {
-  console.log("Using vercel ai");
   const { startDate, endDate, destination, activities, budget } = formData;
 
   let prompt = `

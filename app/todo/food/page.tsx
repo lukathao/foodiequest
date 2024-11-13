@@ -1,8 +1,9 @@
+"use client";
 import React, { useState } from 'react'
 
-const FoodsToDo = ({ foods }) => {
+const FoodsToDo = ({ foods }: any) => {
   const [tasks, setTasks] = useState(
-    foods.map((activity: { name: string, url: string }) => ({ name: activity.name, url: activity.url, completed: false }))
+    foods.map((food: { name: string, url: string }) => ({ name: food.name, url: food.url, completed: false }))
   );
   //TODO images aren't displaying find a way to search for images and pop them up for the user
 
@@ -23,7 +24,7 @@ const FoodsToDo = ({ foods }) => {
   return (
     <div className="max-w-md mx-auto mt-10 p-4 bg-white text-slate-900">
       <ul>
-        {tasks.map((task, index: number) => (
+        {tasks.map((task: any, index: number) => (
           <li key={index} className="flex items-center justify-between mb-5 shadow-md rounded-lg p-5">
             <span
               onClick={() => toggleTask(index)}

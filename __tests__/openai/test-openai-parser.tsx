@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { parseHTML } from "@/server/parser/openai-parser";
 
 const activitiesHtmlString =

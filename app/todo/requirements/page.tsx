@@ -1,6 +1,7 @@
+"use client";
 import React, { useState } from 'react'
 
-const RequirementTodo = ({ requirements }) => {
+const RequirementTodo = ({ requirements }: any) => {
   const [tasks, setTasks] = useState(
     requirements.map((requirement: { description: string; }) => ({ text: requirement.description, completed: false }))
   );
@@ -22,7 +23,7 @@ const RequirementTodo = ({ requirements }) => {
   return (
     <div className="max-w-md mx-auto mt-10 p-4 bg-white text-slate-900">
       <ul>
-        {tasks.map((task: { completed: any; text: string | number | bigint | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | Iterable<React.ReactNode> | React.ReactPortal | Promise<React.AwaitedReactNode> | null | undefined; }, index: number) => (
+        {tasks.map((task: any, index: number) => (
           <li key={index} className="flex items-center justify-between mb-5 shadow-md rounded-lg p-5">
             <span
               onClick={() => toggleTask(index)}
